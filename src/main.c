@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:12:45 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/05/08 14:21:55 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/05/08 15:13:41 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,5 @@ int	main(int argc, char **argv)
 {
 	(void)argc;
 	(void)argv;
-
-	printf("test");
+	printf("test\n");
 }
