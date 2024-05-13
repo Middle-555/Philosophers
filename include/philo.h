@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:11:14 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/05/13 15:44:42 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:05:06 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,16 @@ typedef struct s_data
 	bool				end;
 }						t_data;
 
+// checking_error.c
+int		check_input(char *argv);
+void	fill_input(t_data *data, char **argv);
 // philo.c 
 
 // utils.c 
 void	error_msg(char *str);
+int		ft_isdigit(int c);
+int		ft_isdigit_str(char *str);
+int		ft_isspace(char c);
+long	ft_atol(const char *str);
+
 #endif
