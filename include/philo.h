@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:11:14 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/05/13 15:27:34 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/05/13 15:44:42 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,6 @@
 # include <sys/time.h>
 # include <sys/wait.h>
 # include <unistd.h>
-
-/**
- * @brief
- *
- */
 
 typedef pthread_mutex_t	t_mtx;
 typedef struct s_data	t_data;
@@ -68,4 +63,8 @@ typedef struct s_data
 	bool				end;
 }						t_data;
 
+// philo.c 
+
+// utils.c 
+void	error_msg(char *str);
 #endif
