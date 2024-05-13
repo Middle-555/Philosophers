@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:11:14 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/05/13 14:10:21 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/05/13 15:27:34 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,29 +26,15 @@
 # include <unistd.h>
 
 /**
- * @brief 
- * 
- */
-
-typedef struct s_data
-{
-	int					philo_id;
-	long				meals_needed;
-	long				time_since_meal;
-	t_fork				*left_fork;
-	t_fork				*right_fork;
-	bool				full;
-}						t_data;
-
-/**
- * @brief 
- * 
+ * @brief
+ *
  */
 
 typedef pthread_mutex_t	t_mtx;
+typedef struct s_data	t_data;
 /**
- * @brief 
- * 
+ * @brief
+ *
  */
 
 typedef struct s_fork
@@ -56,5 +42,30 @@ typedef struct s_fork
 	t_mtx				fork;
 	int					fork_id;
 }						t_fork;
+
+typedef struct s_philo
+{
+	int					philo_id;
+	long				meals_needed;
+	long				time_since_meal;
+	t_fork				*left_fork;
+	t_fork				*right_fork;
+	bool				full;
+	pthread_t			thread_id;
+	t_data				*data;
+}						t_philo;
+
+typedef struct s_data
+{
+	t_fork				*forks;
+	t_philo				*philos;
+	long				time_to_sleep;
+	long				time_to_eat;
+	long				time_to_die;
+	long				meal_limit;
+	long				nbr_philo;
+	long				start;
+	bool				end;
+}						t_data;
 
 #endif
