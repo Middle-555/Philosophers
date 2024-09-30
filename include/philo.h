@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:11:14 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/05/13 18:05:06 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/09/30 16:36:55 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,14 @@ typedef struct s_philo
 	t_data				*data;
 }						t_philo;
 
+//TTS = Time to sleep, TTE =  Time to Eat, TTD = Time to Die
 typedef struct s_data
 {
 	t_fork				*forks;
 	t_philo				*philos;
-	long				time_to_sleep;
-	long				time_to_eat;
-	long				time_to_die;
+	long				tts;
+	long				tte;
+	long				ttd;
 	long				meal_limit;
 	long				nbr_philo;
 	long				start;
@@ -68,6 +69,7 @@ int		check_input(char *argv);
 void	fill_input(t_data *data, char **argv);
 // philo.c 
 
+void	init_data(t_data *data);
 // utils.c 
 void	error_msg(char *str);
 int		ft_isdigit(int c);
