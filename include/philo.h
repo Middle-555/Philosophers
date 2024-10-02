@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:11:14 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/09/30 16:36:55 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/02 14:41:50 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_fork
 typedef struct s_philo
 {
 	int					philo_id;
-	long				meals_needed;
+	long				meals;
 	long				time_since_meal;
 	t_fork				*left_fork;
 	t_fork				*right_fork;
@@ -70,6 +70,7 @@ void	fill_input(t_data *data, char **argv);
 // philo.c 
 
 void	init_data(t_data *data);
+void	init_philo(t_data *data);
 // utils.c 
 void	error_msg(char *str);
 int		ft_isdigit(int c);
