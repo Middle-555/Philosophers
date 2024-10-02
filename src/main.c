@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:12:45 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/05/14 10:33:07 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/02 15:09:43 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ int	main(int argc, char **argv)
 			i++;
 		}
 		fill_input(&data, argv);
+		init_data(&data);
+		init_philo(&data);
+		//start_routine;
 	}
 	else
 		error_msg("Please use the correct prototype.");

@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:11:14 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/02 14:41:50 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/02 15:46:39 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ typedef struct s_data
 int		check_input(char *argv);
 void	fill_input(t_data *data, char **argv);
 // philo.c 
-
 void	init_data(t_data *data);
 void	init_philo(t_data *data);
 // utils.c 
@@ -78,4 +77,6 @@ int		ft_isdigit_str(char *str);
 int		ft_isspace(char c);
 long	ft_atol(const char *str);
 
+// utils2.c
+void	*safe_malloc(size_t size);
 #endif
