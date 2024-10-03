@@ -1,0 +1,34 @@
+
+
+Sommaire du Plan pour Philosophers
+
+Initialisation des structures de données
+
+Allouer la mémoire pour les philosophes et les fourchettes.
+Assigner les fourchettes aux philosophes.
+Initialiser les mutex pour les fourchettes.
+Gestion du temps
+
+Utiliser get_time() pour récupérer le temps actuel en millisecondes.
+Implémenter ft_usleep() pour gérer les pauses avec précision.
+Création et gestion des threads
+
+Créer un thread pour chaque philosophe avec pthread_create().
+Chaque thread doit exécuter la routine du philosophe.
+Routine des philosophes
+
+Philosophe pense, prend les fourchettes (verrouille les mutex), mange, repose les fourchettes (déverrouille les mutex), puis dort.
+Vérifier régulièrement s'il est temps de manger (temps écoulé).
+Gestion de la mort des philosophes
+
+Créer une fonction de surveillance qui vérifie si un philosophe est mort (temps sans manger > ttd).
+Terminer la simulation si un philosophe meurt.
+Synchronisation avec les mutex
+
+Utiliser des mutex pour les fourchettes.
+Protéger les variables globales (comme end) avec des mutex pour éviter des accès concurrents.
+Fin de la simulation
+
+Arrêter la simulation proprement quand un philosophe meurt ou que tous ont atteint le nombre de repas requis.
+Utiliser pthread_join() pour attendre la fin des threads.
+Libérer la mémoire allouée.
