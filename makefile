@@ -6,7 +6,7 @@
 #    By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 14:12:29 by kpourcel          #+#    #+#              #
-#    Updated: 2024/10/02 15:49:05 by kpourcel         ###   ########.fr        #
+#    Updated: 2024/10/03 16:51:45 by kpourcel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ OBJ_DIR = obj/
 INC_DIR = include/
 
 # Source and object files
-SRC = main.c philo.c utils.c checking_error.c utils2.c
+SRC = main.c philo.c utils.c checking_error.c utils2.c tester.c
 OBJ = $(SRC:%.c=$(OBJ_DIR)%.o)
 
 # The main rule

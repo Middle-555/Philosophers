@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:11:14 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/03 16:20:24 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/03 16:52:09 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,12 @@ typedef struct s_data
 // checking_error.c
 int		check_input(char *argv);
 void	fill_input(t_data *data, char **argv);
+
 // philo.c 
 void	init_data(t_data *data);
 void	init_philo(t_data *data);
+void	fork_assignement(t_philo *philo, t_data *data, int id);
+
 // utils.c 
 void	error_msg(char *str);
 int		ft_isdigit(int c);
@@ -79,4 +82,9 @@ long	ft_atol(const char *str);
 
 // utils2.c
 void	*safe_malloc(size_t size);
+
+// tester.c
+void	test_forks(t_data *data);
+void	test_philos(t_data *data);
+
 #endif
