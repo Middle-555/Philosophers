@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:12:49 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/02 16:03:33 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/02 16:19:32 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,18 @@ void	init_philo(t_data *data)
 		i++;
 	}
 }
-/*
-void	fork_assignement(t_philo *philo, t_data *data, int pos)
-{
-	//t_fork	*fork;
 
-	philo->left_fork = philo->philo_id + 1 % data->nbr_philo;
-	philo->right_fork = philo->philo_id;
+void	fork_assignement(t_philo *philo, t_data *data, int philo_id)
+{
+	if (philo_id % 2 == 0)
+	{
+		philo->left_fork = philo->philo_id + 1 % data->nbr_philo;
+		philo->right_fork = philo->philo_id;
+	}
+	else
+	{
+		philo->left_fork = philo->philo_id;
+		philo->right_fork = philo_id + 1 % data->nbr_philo;
+	}
+
 }
-*/
