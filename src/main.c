@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:12:45 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/02 15:09:43 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/10 15:40:14 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,21 @@
 // 4. Free everything
 // -> in case a philo die.
 // -> in case all philo are full.
+// Dans main.c, fonction main
 int	main(int argc, char **argv)
 {
 	t_data	data;
-	int		i;
 
-	if (argc == 5 || argc == 6)
+	if (!initialize_program(&data, argc, argv))
 	{
-		i = 1;
-		while (i < argc)
-		{
-			if (!check_input(argv[i]))
-				return (1);
-			i++;
-		}
-		fill_input(&data, argv);
-		init_data(&data);
-		init_philo(&data);
-		//start_routine;
+		printf("Error: Failed to initialize the program\n");
+		return (1);
 	}
-	else
-		error_msg("Please use the correct prototype.");
+	if (!start_dinner(&data))
+	{
+		printf("Error: Failed to start dinner\n");
+		return (1);
+	}
+	cleanup(&data);
 	return (0);
 }

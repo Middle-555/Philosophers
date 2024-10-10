@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:00:24 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/02 16:00:22 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/10 16:20:47 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,19 @@ long long	get_time(void)
 
 	gettimeofday(&t, NULL);
 	return ((t.tv_sec * 1000) + (t.tv_usec / 1000));
+}
+
+// Exemple de libération des ressources à la fin
+void	cleanup(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->nbr_philo)
+	{
+		pthread_mutex_destroy(&data->forks[i].fork);
+		i++;
+	}
+	free(data->philos);
+	free(data->forks);
 }

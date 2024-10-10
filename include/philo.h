@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:11:14 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/03 16:52:09 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/10 17:13:31 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_data	t_data;
 
 typedef struct s_fork
 {
-	t_mtx				fork;
+	pthread_mutex_t		fork;
 	int					fork_id;
 }						t_fork;
 
@@ -60,19 +60,33 @@ typedef struct s_data
 	long				ttd;
 	long				meal_limit;
 	long				nbr_philo;
+	pthread_t			monitor_thread;
 	long				start;
 	bool				end;
 }						t_data;
 
 // checking_error.c
 int		check_input(char *argv);
-void	fill_input(t_data *data, char **argv);
+int		fill_input(t_data *data, char **argv);
 
-// philo.c 
-void	init_data(t_data *data);
-void	init_philo(t_data *data);
+// data.c 
+
+int		init_data(t_data *data);
+int		init_philo(t_data *data);
 void	fork_assignement(t_philo *philo, t_data *data, int id);
 
+// philo_routine.c
+int		take_forks(t_philo *philo);
+void	philo_sleep_and_think(t_philo *philo);
+void	philo_eat(t_philo *philo);
+
+// philo.c 
+void	*philo_routine(void *arg);
+void	*monitor_philosophers(void *arg);
+int		start_dinner(t_data *data);
+int		initialize_program(t_data *data, int argc, char **argv);
+int		take_forks(t_philo *philo);
+void	release_forks(t_philo *philo);
 // utils.c 
 void	error_msg(char *str);
 int		ft_isdigit(int c);
@@ -82,6 +96,8 @@ long	ft_atol(const char *str);
 
 // utils2.c
 void	*safe_malloc(size_t size);
+void		cleanup(t_data *data);
+long long		get_time(void);
 
 // tester.c
 void	test_forks(t_data *data);
