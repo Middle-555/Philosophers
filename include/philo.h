@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:11:14 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/11 15:35:58 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/11 15:45:21 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,6 @@ void		cleanup(t_data *data);
 // tester.c
 void		test_forks(t_data *data);
 void		test_philos(t_data *data);
+void		test_fill_input(t_data *data);
 
 #endif

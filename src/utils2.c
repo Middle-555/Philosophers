@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:00:24 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/11 15:16:32 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/11 15:40:38 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ long long	get_time(void)
 }
 
 // Exemple de libération des ressources à la fin
+
 void	cleanup(t_data *data)
 {
 	int	i;
@@ -46,7 +47,7 @@ void	cleanup(t_data *data)
 		i = 0;
 		while (i < data->nbr_philo)
 		{
-			pthread_mutex_destroy(&data->forks[i].mutex);
+			pthread_mutex_destroy(&data->forks[i].fork);
 			i++;
 		}
 		free(data->forks);

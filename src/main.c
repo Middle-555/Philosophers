@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:12:45 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/11 15:30:22 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/11 16:05:38 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,21 @@ int	main(int argc, char **argv)
 
 	if (!check_arguments(argc, argv))
 		return (1);
-	if (!initialize_data(&data, argc, argv))
+	if (!fill_input(&data, argv))
+		error_msg("failed to fill input");
+	if (!init_forks(&data))
 	{
 		cleanup(&data);
-		return (1);
+		error_msg("failed to init forks");
 	}
-	start_simulation(&data);
-	cleanup(&data);
+	if (!init_philos(&data))
+	{
+		cleanup(&data);
+		error_msg("failed to init philos");
+	}
+	test_fill_input(&data);
+	test_forks(&data);
+	test_philos(&data);
+	//cleanup(&data);
 	return (0);
 }
