@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:11:14 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/11 15:45:21 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/11 16:47:28 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,12 @@ int			check_arguments(int argc, char **argv);
 int			init_data(t_data *data, int argc, char **argv);
 int			init_forks(t_data *data);
 int			init_philos(t_data *data);
-int			initialize_program(t_data *data, int argc, char **argv);
 int			fill_input(t_data *data, char **argv);
 
 // philo_routine.c
-
+void		*philosopher_routine(void *arg);
 // philo.c
+void		init_program(t_data *data, int argc, char **argv);
 
 // utils.c
 void		error_msg(char *str);
