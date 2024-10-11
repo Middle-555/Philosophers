@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 15:29:17 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/05/13 18:24:32 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/11 15:28:09 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@
  */
 void	error_msg(char *str)
 {
-	printf("Error : \n");
+	printf("Error:\n");
 	printf("%s\n", str);
-	exit(0);
+	exit(1);
 }
 
 int	ft_isdigit(int c)
 {
-	return ((c >= '0' && c <= '9') || c == '+' || c == '-');
+	return (c >= '0' && c <= '9');
 }
 
 /**
@@ -74,20 +74,20 @@ long	ft_atol(const char *str)
 	long	result;
 
 	result = 0;
-	while (*str == 32 || (*str >= 9 && 13 >= *str))
+	while (ft_isspace(*str))
 		str++;
 	if (*str == '-')
-		error_msg("The value need to be positive");
+		error_msg("The value needs to be positive");
 	if (*str == '+')
 		str++;
-	while (*str >= '0' && '9' >= *str)
+	while (ft_isdigit(*str))
 	{
 		if (result > (INT_MAX - (*str - '0')) / 10)
-		{
 			error_msg("Value must be between 0 and MAX INT");
-		}
 		result = result * 10 + (*str - '0');
 		str++;
 	}
+	if (*str != '\0')
+		error_msg("Invalid number format");
 	return (result);
 }

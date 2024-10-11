@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:00:24 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/10 16:20:47 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/11 15:16:32 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,16 @@ void	cleanup(t_data *data)
 {
 	int	i;
 
-	i = 0;
-	while (i < data->nbr_philo)
+	if (data->philos != NULL)
+		free(data->philos);
+	if (data->forks != NULL)
 	{
-		pthread_mutex_destroy(&data->forks[i].fork);
-		i++;
+		i = 0;
+		while (i < data->nbr_philo)
+		{
+			pthread_mutex_destroy(&data->forks[i].mutex);
+			i++;
+		}
+		free(data->forks);
 	}
-	free(data->philos);
-	free(data->forks);
 }

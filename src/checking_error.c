@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 15:53:48 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/10 17:05:23 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/11 15:29:18 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,34 +18,30 @@
 int	check_input(char *argv)
 {
 	if (!ft_isdigit_str(argv))
-		error_msg("You need to put only numbers");
+		error_msg("You need to put only  positiv numbers");
 	return (1);
 }
 
-int	fill_input(t_data *data, char **argv)
+int	check_arguments(int argc, char **argv)
 {
-	data->nbr_philo = ft_atol(argv[1]);
-	data->ttd = ft_atol(argv[2]);
-	data->tte = ft_atol(argv[3]);
-	data->tts = ft_atol(argv[4]);
-	if (data->nbr_philo <= 0 || data->ttd <= 0
-		|| data->tte <= 0 || data->tts <= 0)
+	int		i;
+	long	value;
+
+	if (argc < 5 || argc > 6)
 	{
-		printf("Error: Invalid input values\n");
+		error_msg("Incorrect number of arguments.");
 		return (0);
 	}
-	if (argv[5])
+	i = 1;
+	while (i < argc)
 	{
-		data->meal_limit = ft_atol(argv[5]);
-		if (data->meal_limit < 0)
+		value = ft_atol(argv[i]);
+		if (value <= 0)
 		{
-			printf("Error: Invalid meal limit\n");
+			error_msg("Arguments must be greater than 0.");
 			return (0);
 		}
-	}
-	else
-	{
-		data->meal_limit = -1;
+		i++;
 	}
 	return (1);
 }
