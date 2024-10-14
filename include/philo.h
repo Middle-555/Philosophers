@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:11:14 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/11 16:47:28 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/14 15:08:00 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ long		ft_atol(const char *str);
 long long	get_time(void);
 void		*safe_malloc(size_t size);
 void		cleanup(t_data *data);
+void		one_philo_case(long ttd);
 
 // tester.c
 void		test_forks(t_data *data);

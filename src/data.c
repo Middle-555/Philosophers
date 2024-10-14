@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 15:09:21 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/11 16:51:12 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/14 15:26:47 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	init_forks(t_data *data)
 int	init_philos(t_data *data)
 {
 	int			i;
-	pthread_t	*threads;
 
 	if (!data->philos)
 	{

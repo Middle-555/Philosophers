@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 15:53:48 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/11 15:29:18 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/14 15:13:48 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,22 @@ int	check_arguments(int argc, char **argv)
 {
 	int		i;
 	long	value;
+	long	ttd;
 
 	if (argc < 5 || argc > 6)
-	{
 		error_msg("Incorrect number of arguments.");
-		return (0);
-	}
 	i = 1;
 	while (i < argc)
 	{
 		value = ft_atol(argv[i]);
 		if (value <= 0)
-		{
 			error_msg("Arguments must be greater than 0.");
-			return (0);
-		}
 		i++;
+	}
+	if (ft_atol(argv[1]) == 1)
+	{
+		ttd = ft_atol(argv[2]);
+		one_philo_case(ttd);
 	}
 	return (1);
 }

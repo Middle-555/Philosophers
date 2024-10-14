@@ -6,12 +6,12 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 15:42:13 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/11 16:56:51 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/14 14:40:00 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
-
+/*
 void	*philosopher_routine(void *arg)
 {
 	t_philo	*philo;
@@ -35,3 +35,4 @@ void	*philosopher_routine(void *arg)
 	}
 	return (NULL);
 }
+*/
