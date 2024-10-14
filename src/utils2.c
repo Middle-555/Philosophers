@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:00:24 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/14 15:15:48 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/14 15:27:50 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	one_philo_case(long ttd)
 	current_time = get_time();
 	printf("%4lli 1 has taken a fork\n", current_time);
 	usleep(ttd * 1000);
+	current_time = get_time();
 	printf("%4lli 1 is dead\n", current_time + ttd);
 	error_msg("Philo 1 is dead");
 }
