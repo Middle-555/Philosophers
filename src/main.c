@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:12:45 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/24 18:10:18 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/24 16:24:41 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,5 @@ int	main(int argc, char **argv)
 	test_forks(&data);
 	test_philos(&data);
 	monitor_philos(&data);
-	init_mutex(&data);
-	create_threads(&data);
 	return (0);
 }

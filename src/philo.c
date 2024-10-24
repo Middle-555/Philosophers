@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:12:49 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/24 18:08:36 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/24 16:24:48 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ void	init_program(t_data *data, int argc, char **argv)
 	if (!check_arguments(argc, argv))
 		error_msg("wrong argument");
 	if (!fill_input(data, argv))
+	{
+		cleanup(data);
 		error_msg("failed to fill input");
+	}
 	if (!init_forks(data))
 	{
 		cleanup(data);
@@ -28,5 +31,14 @@ void	init_program(t_data *data, int argc, char **argv)
 		cleanup(data);
 		error_msg("failed to init philos");
 	}
+	if (!init_mutex(data))
+	{
+		cleanup(data);
+		error_msg("failed to init mutex");
+	}
+	if (!create_threads(data))
+	{
+		cleanup(data);
+		error_msg("failed to create threads");
+	}
 }
-

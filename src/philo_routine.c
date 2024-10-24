@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 15:42:13 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/24 18:09:19 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/24 16:24:46 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ void	*philosopher_routine(void *arg)
 {
 	t_philo	*philo;
 	t_data	*data;
-	//int		i;
 
 	philo = (t_philo *)arg;
 	data = philo->data;
-	//i = 0;
+	if (philo->philo_id % 2 != 0)
+		usleep(100);
 	while (!philo->data->end)
 	{
 		print_status(data, philo->philo_id, "is thinking");

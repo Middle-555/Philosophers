@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 15:09:21 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/24 18:02:20 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/24 16:16:13 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	init_philos(t_data *data)
 	{
 		data->philos[i].philo_id = i + 1;
 		data->philos[i].meals = 0;
-		data->philos[i].time_since_meal = data->start;
+		data->philos[i].time_since_meal = get_time();
 		data->philos[i].left_fork = &data->forks[i];
 		data->philos[i].right_fork = &data->forks[(i + 1) % data->nbr_philo];
 		data->philos[i].data = data;
