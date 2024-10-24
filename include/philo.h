@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:11:14 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/24 16:18:22 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/24 18:04:21 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,16 +79,18 @@ int			check_input(char *argv);
 int			check_arguments(int argc, char **argv);
 
 // data.c
-int			init_data(t_data *data, int argc, char **argv);
 int			init_forks(t_data *data);
 int			init_philos(t_data *data);
 int			fill_input(t_data *data, char **argv);
+int			create_threads(t_data *data);
+int			init_mutex(t_data *data);
 
 // free_data.c
 void		end_simulation(t_data *data);
-void 		cleanup(t_data *data);
+void		cleanup(t_data *data);
 // philo_routine.c
 void		*philosopher_routine(void *arg);
+int			wait_for_threads(t_data *data);
 
 // philo_death.c
 void		check_death(t_data *data);

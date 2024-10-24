@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 16:50:09 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/11 15:59:29 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/24 18:07:15 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	test_philos(t_data *data)
 	{
 		printf("Philo %d initialized with left fork %d and right fork %d\n",
 			data->philos[i].philo_id,
-			data->philos[i].left_fork->fork_id,
-			data->philos[i].right_fork->fork_id);
+			data->philos[i].right_fork->fork_id,
+			data->philos[i].left_fork->fork_id);
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 15:09:21 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/14 15:26:47 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/24 18:02:20 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,46 @@ int	fill_input(t_data *data, char **argv)
 		data->meal_limit = -1;
 	data->forks = (t_fork *)safe_malloc(sizeof(t_fork) * data->nbr_philo);
 	data->philos = (t_philo *)safe_malloc(sizeof(t_philo) * data->nbr_philo);
+	return (1);
+}
+
+int	create_threads(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->nbr_philo)
+	{
+		if (pthread_create(&(data->philos[i].thread_id), NULL,
+				&philosopher_routine, &(data->philos[i])) != 0)
+		{
+			error_msg("Failed to create thread");
+			return (0);
+		}
+		i++;
+	}
+	return (1);
+}
+
+int	init_mutex(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->nbr_philo)
+	{
+		if (pthread_mutex_init(&data->forks[i].fork, NULL) != 0)
+		{
+			error_msg("Failed to initialize mutex for fork");
+			return (0);
+		}
+		i++;
+	}
+	if (pthread_mutex_init(&data->mutex_print, NULL) != 0
+		|| pthread_mutex_init(&data->mutex_eat, NULL) != 0)
+	{
+		error_msg("Failed to initialize mutex");
+		return (0);
+	}
 	return (1);
 }
