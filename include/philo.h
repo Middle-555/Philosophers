@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:11:14 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/24 16:04:44 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/24 16:18:22 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ int			fill_input(t_data *data, char **argv);
 
 // free_data.c
 void		end_simulation(t_data *data);
+void 		cleanup(t_data *data);
 // philo_routine.c
 void		*philosopher_routine(void *arg);
 
