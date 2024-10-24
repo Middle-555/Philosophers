@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:11:14 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/14 15:08:00 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/24 16:04:44 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,14 @@ int			init_forks(t_data *data);
 int			init_philos(t_data *data);
 int			fill_input(t_data *data, char **argv);
 
+// free_data.c
+void		end_simulation(t_data *data);
 // philo_routine.c
 void		*philosopher_routine(void *arg);
+
+// philo_death.c
+void		check_death(t_data *data);
+void		monitor_philos(t_data *data);
 // philo.c
 void		init_program(t_data *data, int argc, char **argv);
 
@@ -101,6 +107,7 @@ long long	get_time(void);
 void		*safe_malloc(size_t size);
 void		cleanup(t_data *data);
 void		one_philo_case(long ttd);
+void		print_status(t_data *data, int philo_id, char *msg);
 
 // tester.c
 void		test_forks(t_data *data);

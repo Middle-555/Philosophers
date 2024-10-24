@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/08 14:12:45 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/24 16:05:48 by kpourcel         ###   ########.fr       */
+/*   Created: 2024/10/24 16:01:57 by kpourcel          #+#    #+#             */
+/*   Updated: 2024/10/24 16:03:02 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-// 1. Parsing of error//
-// 2. Data init//
-// 3. Start the dinner
-// 4. Free everything
-// -> in case a philo die.
-// -> in case all philo are full.
-// Dans main.c, fonction main
-
-int	main(int argc, char **argv)
+void	end_simulation(t_data *data)
 {
-	t_data	data;
+	int	i;
 
-	init_program(&data, argc, argv);
-	test_fill_input(&data);
-	test_forks(&data);
-	test_philos(&data);
-	check_death(&data);
-	return (0);
+	i = 0;
+	while (i < data->nbr_philo)
+	{
+		pthread_mutex_destroy(&data->forks[i].fork);
+		i++;
+	}
+	pthread_mutex_destroy(&data->mutex_print);
+	pthread_mutex_destroy(&data->mutex_eat);
+	free(data->philos);
+	free(data->forks);
 }
