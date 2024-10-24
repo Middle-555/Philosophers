@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:12:45 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/24 16:19:54 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/24 14:49:40 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	main(int argc, char **argv)
 	test_fill_input(&data);
 	test_forks(&data);
 	test_philos(&data);
-	check_death(&data);
-	cleanup(&data);
+	monitor_philos(&data);
 	return (0);
 }
