@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:11:14 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/24 18:04:21 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/25 15:54:28 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct s_data
 	long				nbr_philo;
 	pthread_mutex_t		mutex_print;
 	pthread_mutex_t		mutex_eat;
+	pthread_mutex_t		mutex_start;
 	long				start;
 	bool				end;
 }						t_data;
@@ -90,6 +91,8 @@ void		end_simulation(t_data *data);
 void		cleanup(t_data *data);
 // philo_routine.c
 void		*philosopher_routine(void *arg);
+void		eat_philosopher(t_philo *philo);
+void		sleep_time(long long time, t_data *data);
 int			wait_for_threads(t_data *data);
 
 // philo_death.c

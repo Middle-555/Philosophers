@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:00:24 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/24 14:23:12 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/25 15:53:35 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,3 +58,4 @@ void	print_status(t_data *data, int philo_id, char *msg)
 	}
 	pthread_mutex_unlock(&data->mutex_print);
 }
+

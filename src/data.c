@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 15:09:21 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/24 16:16:13 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/25 15:34:48 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int	create_threads(t_data *data)
 {
 	int	i;
 
+	pthread_mutex_lock(&data->mutex_start); // Bloquer avant la création des threads
 	i = 0;
 	while (i < data->nbr_philo)
 	{
@@ -86,6 +87,7 @@ int	create_threads(t_data *data)
 		}
 		i++;
 	}
+	pthread_mutex_unlock(&data->mutex_start); // Débloquer après la création des threads
 	return (1);
 }
 
@@ -104,7 +106,8 @@ int	init_mutex(t_data *data)
 		i++;
 	}
 	if (pthread_mutex_init(&data->mutex_print, NULL) != 0
-		|| pthread_mutex_init(&data->mutex_eat, NULL) != 0)
+		|| pthread_mutex_init(&data->mutex_eat, NULL) != 0
+		|| pthread_mutex_init(&data->mutex_start, NULL) != 0) // Initialisation de mutex_start
 	{
 		error_msg("Failed to initialize mutex");
 		return (0);

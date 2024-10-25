@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 15:59:10 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/24 16:01:14 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/25 15:37:11 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ void	monitor_philos(t_data *data)
 	while (!data->is_dead)
 	{
 		check_death(data);
-		usleep(1000);
+		usleep(100);
 	}
 	end_simulation(data);
 }
+

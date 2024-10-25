@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 16:01:57 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/24 16:26:21 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/25 15:35:17 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	end_simulation(t_data *data)
 	}
 	pthread_mutex_destroy(&data->mutex_print);
 	pthread_mutex_destroy(&data->mutex_eat);
+	pthread_mutex_destroy(&data->mutex_start); // Détruire le mutex de démarrage
 	free(data->philos);
 	free(data->forks);
 }
@@ -46,6 +47,7 @@ void	cleanup(t_data *data)
 	}
 	pthread_mutex_destroy(&data->mutex_print);
 	pthread_mutex_destroy(&data->mutex_eat);
+	pthread_mutex_destroy(&data->mutex_start); // Détruire le mutex de démarrage
 	free(data->philos);
 	free(data->forks);
 }
