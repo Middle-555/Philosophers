@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kpourcel <kpourcel@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 15:09:21 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/25 15:34:48 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/28 14:06:00 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	create_threads(t_data *data)
 {
 	int	i;
 
-	pthread_mutex_lock(&data->mutex_start); // Bloquer avant la création des threads
+	pthread_mutex_lock(&data->mutex_start);
 	i = 0;
 	while (i < data->nbr_philo)
 	{
@@ -107,7 +107,7 @@ int	init_mutex(t_data *data)
 	}
 	if (pthread_mutex_init(&data->mutex_print, NULL) != 0
 		|| pthread_mutex_init(&data->mutex_eat, NULL) != 0
-		|| pthread_mutex_init(&data->mutex_start, NULL) != 0) // Initialisation de mutex_start
+		|| pthread_mutex_init(&data->mutex_start, NULL) != 0)
 	{
 		error_msg("Failed to initialize mutex");
 		return (0);

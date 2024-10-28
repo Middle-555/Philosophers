@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kpourcel <kpourcel@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:11:14 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/25 15:54:28 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/28 13:34:40 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ void		*philosopher_routine(void *arg);
 void		eat_philosopher(t_philo *philo);
 void		sleep_time(long long time, t_data *data);
 int			wait_for_threads(t_data *data);
+bool		check_meal_count(t_data *data);
 
 // philo_death.c
 void		check_death(t_data *data);

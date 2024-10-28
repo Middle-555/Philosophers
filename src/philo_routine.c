@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_routine.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kpourcel <kpourcel@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 15:42:13 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/25 16:03:01 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/28 14:13:33 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,41 +19,27 @@ void	*philosopher_routine(void *arg)
 
 	philo = (t_philo *)arg;
 	data = philo->data;
+
+	// Les philosophes pairs commencent un peu plus tard pour réduire la contention
 	if (philo->philo_id % 2 == 0)
 		usleep(1000);
 
-	pthread_mutex_lock(&(data->mutex_eat));
 	while (!(data->is_dead) && !(data->end))
 	{
-		pthread_mutex_unlock(&(data->mutex_eat));
-		eat_philosopher(philo);
-		pthread_mutex_lock(&(data->mutex_eat));
-		print_status(data, philo->philo_id, "is sleeping");
-		pthread_mutex_unlock(&(data->mutex_eat));
-		sleep_time(data->tts, data);
-		pthread_mutex_lock(&(data->mutex_eat));
-		print_status(data, philo->philo_id, "is thinking");
-
-		// Vérifie si le philosophe a atteint sa limite de repas
-		if (philo->meals >= data->meal_limit && !philo->full)
-		{
-			philo->full = true;
-			data->check_eat++;
-		}
-
-		// Si tous les philosophes ont mangé assez, on arrête
-		if (data->check_eat == data->nbr_philo)
-		{
-			data->end = true;
-			pthread_mutex_unlock(&(data->mutex_eat));
+		if (check_meal_count(data))
 			break;
-		}
+		// Philosophe essaie de manger
+		eat_philosopher(philo);
+
+		// Philosophe dort
+		print_status(data, philo->philo_id, "is sleeping");
+		sleep_time(data->tts, data);
+
+		// Philosophe pense
+		print_status(data, philo->philo_id, "is thinking");
 	}
-	pthread_mutex_unlock(&(data->mutex_eat));
 	return (NULL);
 }
-
-
 
 void	eat_philosopher(t_philo *philo)
 {
@@ -63,30 +49,25 @@ void	eat_philosopher(t_philo *philo)
 
 	// Prise des fourchettes
 	pthread_mutex_lock(&(data->forks[philo->left_fork->fork_id - 1].fork));
-	pthread_mutex_lock(&(data->mutex_eat));
 	print_status(data, philo->philo_id, "has taken a fork");
-	pthread_mutex_unlock(&(data->mutex_eat));
-
 	pthread_mutex_lock(&(data->forks[philo->right_fork->fork_id - 1].fork));
-	pthread_mutex_lock(&(data->mutex_eat));
 	print_status(data, philo->philo_id, "has taken a fork");
-	print_status(data, philo->philo_id, "is eating");
 
-	// Mise à jour de l’heure du dernier repas et augmentation du compteur de repas
+	// Philosophe mange maintenant qu'il a deux fourchettes
+	pthread_mutex_lock(&(data->mutex_eat));
+	print_status(data, philo->philo_id, "is eating");
 	philo->time_since_meal = get_time();
+	(philo->meals)++;
 	pthread_mutex_unlock(&(data->mutex_eat));
 
 	// Philosophe mange pour une durée `tte`
 	sleep_time(data->tte, data);
 
-	pthread_mutex_lock(&(data->mutex_eat));
-	(philo->meals)++;
-	pthread_mutex_unlock(&(data->mutex_eat));
-
 	// Libération des fourchettes
 	pthread_mutex_unlock(&(data->forks[philo->right_fork->fork_id - 1].fork));
 	pthread_mutex_unlock(&(data->forks[philo->left_fork->fork_id - 1].fork));
 }
+
 
 void	sleep_time(long long time, t_data *data)
 {
@@ -119,4 +100,30 @@ int	wait_for_threads(t_data *data)
 		i++;
 	}
 	return (1);
+}
+
+bool	check_meal_count(t_data *data)
+{
+	int	i;
+	int	completed_meals;
+
+	i = 0;
+	completed_meals = 0;
+	while (i < data->nbr_philo)
+	{
+		pthread_mutex_lock(&(data->mutex_eat));
+		if (data->philos[i].meals >= data->meal_limit)
+			completed_meals++;
+		pthread_mutex_unlock(&(data->mutex_eat));
+		i++;
+	}
+	// Si tous les philosophes ont atteint le nombre de repas requis
+	if (completed_meals == data->nbr_philo)
+	{
+		pthread_mutex_lock(&(data->mutex_eat));
+		data->end = 1; // Indique la fin de la simulation
+		pthread_mutex_unlock(&(data->mutex_eat));
+		return (true);
+	}
+	return (false);
 }

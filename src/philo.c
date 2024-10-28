@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kpourcel <kpourcel@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:12:49 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/24 16:24:48 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/28 13:11:44 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ void	init_program(t_data *data, int argc, char **argv)
 		cleanup(data);
 		error_msg("failed to fill input");
 	}
-	if (!init_forks(data))
-	{
-		cleanup(data);
-		error_msg("failed to init forks");
-	}
 	if (!init_philos(data))
 	{
 		cleanup(data);
 		error_msg("failed to init philos");
+	}
+	if (!init_forks(data))
+	{
+		cleanup(data);
+		error_msg("failed to init forks");
 	}
 	if (!init_mutex(data))
 	{
