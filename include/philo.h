@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpourcel <kpourcel@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:11:14 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/28 13:34:40 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/28 15:38:44 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_philo
 	long				time_since_meal;
 	t_fork				*left_fork;
 	t_fork				*right_fork;
-	bool				full;
+	int				full;
 	pthread_t			thread_id;
 	t_data				*data;
 }						t_philo;
@@ -94,7 +94,7 @@ void		*philosopher_routine(void *arg);
 void		eat_philosopher(t_philo *philo);
 void		sleep_time(long long time, t_data *data);
 int			wait_for_threads(t_data *data);
-bool		check_meal_count(t_data *data);
+int			check_meal_count(t_data *data);
 
 // philo_death.c
 void		check_death(t_data *data);
