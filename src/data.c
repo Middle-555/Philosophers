@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpourcel <kpourcel@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 15:09:21 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/28 14:06:00 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/28 14:43:57 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	create_threads(t_data *data)
 		}
 		i++;
 	}
-	pthread_mutex_unlock(&data->mutex_start); // Débloquer après la création des threads
+	pthread_mutex_unlock(&data->mutex_start);
 	return (1);
 }
 
