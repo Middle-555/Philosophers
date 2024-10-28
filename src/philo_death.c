@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 15:59:10 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/25 15:37:11 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/10/28 14:26:53 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	check_death(t_data *data)
 
 void	monitor_philos(t_data *data)
 {
-	while (!data->is_dead)
+	while (!data->is_dead || !(check_meal_count(data)))
 	{
 		check_death(data);
 		usleep(100);
