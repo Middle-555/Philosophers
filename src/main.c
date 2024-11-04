@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpourcel <kpourcel@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:12:45 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/28 14:10:08 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/11/04 14:47:18 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,13 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	init_program(&data, argc, argv);
+	monitor_philos(&data, argc, argv);
+	//init_program(&data, argc, argv);
 	test_fill_input(&data);
 	test_forks(&data);
 	test_philos(&data);
-	monitor_philos(&data);
+	//test_philosopher_forks_already_locked();
+	//test_philosopher_locks_forks_correct_order();
+	//monitor_philos(&data);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 15:59:10 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/28 15:41:31 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/11/04 14:46:23 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,14 @@ void	check_death(t_data *data)
 	}
 }
 
-void	monitor_philos(t_data *data)
+void	monitor_philos(t_data *data, int argc, char **argv)
 {
+	init_program(data, argc, argv);
 	while (!data->is_dead)
 	{
 		check_death(data);
 		usleep(100);
 	}
-	//end_simulation(data);
+	end_simulation(data);
 }
 

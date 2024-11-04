@@ -6,7 +6,7 @@
 #    By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 14:12:29 by kpourcel          #+#    #+#              #
-#    Updated: 2024/10/24 16:03:38 by kpourcel         ###   ########.fr        #
+#    Updated: 2024/11/04 14:50:58 by kpourcel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = philo
 
 # Compiler and flags
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -Wall -Werror -Wextra -g -pthread
 
 # Directories
 SRC_DIR = src/

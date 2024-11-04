@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 15:09:21 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/28 14:43:57 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/11/04 14:38:42 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	init_philos(t_data *data)
 		data->philos[i].right_fork = &data->forks[(i + 1) % data->nbr_philo];
 		data->philos[i].data = data;
 		data->philos[i].full = 0;
+		data->is_dead = 0;
 		i++;
 	}
 	return (1);

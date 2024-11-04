@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 15:42:13 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/28 15:41:12 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/11/04 14:43:41 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	*philosopher_routine(void *arg)
 		sleep_time(data->tts, data);
 		print_status(data, philo->philo_id, "is thinking");
 	}
-	cleanup(data);
+	//cleanup(data);
 	return (NULL);
 }
 
@@ -44,18 +44,19 @@ void	eat_philosopher(t_philo *philo)
 
 	data = philo->data;
 
+
 	// Prise des fourchettes dans un ordre défini pour éviter les deadlocks
 	if (philo->left_fork->fork_id < philo->right_fork->fork_id)
 	{
-		pthread_mutex_lock(&(data->forks[philo->left_fork->fork_id].fork));
-		print_status(data, philo->philo_id, "has taken a fork");
 		pthread_mutex_lock(&(data->forks[philo->right_fork->fork_id].fork));
+		print_status(data, philo->philo_id, "has taken a fork");
+		pthread_mutex_lock(&(data->forks[philo->left_fork->fork_id].fork));
 	}
 	else
 	{
-		pthread_mutex_lock(&(data->forks[philo->right_fork->fork_id].fork));
-		print_status(data, philo->philo_id, "has taken a fork");
 		pthread_mutex_lock(&(data->forks[philo->left_fork->fork_id].fork));
+		print_status(data, philo->philo_id, "has taken a fork");
+		pthread_mutex_lock(&(data->forks[philo->right_fork->fork_id].fork));
 	}
 	print_status(data, philo->philo_id, "has taken a fork");
 

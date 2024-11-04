@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:11:14 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/28 15:38:44 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/11/04 14:46:44 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <errno.h>
 # include <limits.h>
+# include <assert.h>
 # include <pthread.h>
 # include <stdbool.h>
 # include <stdint.h>
@@ -98,7 +99,7 @@ int			check_meal_count(t_data *data);
 
 // philo_death.c
 void		check_death(t_data *data);
-void		monitor_philos(t_data *data);
+void		monitor_philos(t_data *data, int argc, char **argv);
 // philo.c
 void		init_program(t_data *data, int argc, char **argv);
 
@@ -120,5 +121,6 @@ void		print_status(t_data *data, int philo_id, char *msg);
 void		test_forks(t_data *data);
 void		test_philos(t_data *data);
 void		test_fill_input(t_data *data);
-
+void		test_philosopher_forks_already_locked(void);
+void 		test_philosopher_locks_forks_correct_order(void);
 #endif
