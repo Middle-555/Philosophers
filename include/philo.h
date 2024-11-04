@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:11:14 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/11/04 14:46:44 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/11/04 16:49:07 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int			check_meal_count(t_data *data);
 
 // philo_death.c
 void		check_death(t_data *data);
-void		monitor_philos(t_data *data, int argc, char **argv);
+void		*monitor_routine(void *arg);
 // philo.c
 void		init_program(t_data *data, int argc, char **argv);
 

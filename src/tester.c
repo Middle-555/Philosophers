@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 16:50:09 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/11/04 14:26:36 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/11/04 17:20:35 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void test_philosopher_locks_forks_correct_order(void)
     pthread_mutex_destroy(&(forks[1].fork));
     pthread_mutex_destroy(&(data.mutex_eat));
 }
-
+*/
     // Both forks are already locked by another philosopher
 void test_philosopher_forks_already_locked(void)
 {
@@ -121,4 +121,3 @@ void test_philosopher_forks_already_locked(void)
     pthread_mutex_destroy(&(forks[0].fork));
     pthread_mutex_destroy(&(forks[1].fork));
 }
-*/

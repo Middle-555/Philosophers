@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpourcel <kpourcel@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:12:49 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/28 13:11:44 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/11/04 17:20:37 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,5 @@ void	init_program(t_data *data, int argc, char **argv)
 		cleanup(data);
 		error_msg("failed to create threads");
 	}
+	monitor_routine(data);
 }

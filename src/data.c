@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 15:09:21 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/11/04 14:38:42 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/11/04 17:20:42 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,9 @@ int	fill_input(t_data *data, char **argv)
 
 int	create_threads(t_data *data)
 {
-	int	i;
+	int			i;
+	pthread_t	monitor_thread;
 
-	pthread_mutex_lock(&data->mutex_start);
 	i = 0;
 	while (i < data->nbr_philo)
 	{
@@ -84,13 +84,23 @@ int	create_threads(t_data *data)
 				&philosopher_routine, &(data->philos[i])) != 0)
 		{
 			error_msg("Failed to create thread");
+			while (--i >= 0)
+				pthread_join(data->philos[i].thread_id, NULL);
 			return (0);
 		}
 		i++;
 	}
-	pthread_mutex_unlock(&data->mutex_start);
+	if (pthread_create(&monitor_thread, NULL, &monitor_routine, (void *)data) != 0)
+	{
+		error_msg("Failed to create monitoring thread");
+		while (--i >= 0)
+			pthread_join(data->philos[i].thread_id, NULL);
+		return (0);
+	}
+	pthread_join(monitor_thread, NULL);
 	return (1);
 }
+
 
 int	init_mutex(t_data *data)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpourcel <kpourcel@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:00:24 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/10/28 13:58:24 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/11/04 17:52:30 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	print_status(t_data *data, int philo_id, char *msg)
 	long long	current_time;
 
 	pthread_mutex_lock(&data->mutex_print);
-	current_time = get_time() - data->start;
+	current_time = get_time();
 	if (!data->is_dead)
 	{
 		printf("%4lli %d %s\n", current_time, philo_id, msg);
