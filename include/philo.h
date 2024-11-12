@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:11:14 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/11/12 14:06:04 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/11/12 14:25:34 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,4 +129,5 @@ void		test_philos(t_data *data);
 void		test_fill_input(t_data *data);
 void		test_philosopher_forks_already_locked(void);
 void 		test_philosopher_locks_forks_correct_order(void);
+void		test_meal_limit(t_data *data);
 #endif

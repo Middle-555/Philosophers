@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:01:57 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/11/12 14:07:01 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/11/12 15:18:53 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void	start_eating(t_philo *philo)
 	data = philo->data;
 	pthread_mutex_lock(&(data->mutex_eat));
 	print_status(data, philo->philo_id, "is eating");
-	philo->time_since_meal = get_time();
 	(philo->meals)++;
+	philo->time_since_meal = get_time();
 	pthread_mutex_unlock(&(data->mutex_eat));
 	sleep_time(data->tte, data);
 }

@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:12:45 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/11/04 17:20:40 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/11/12 16:27:56 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	init_program(&data, argc, argv);
-	test_fill_input(&data);
-	test_forks(&data);
-	test_philos(&data);
+	//test_fill_input(&data);
+	//test_forks(&data);
+	//test_philos(&data);
+	//test_meal_limit(&data);
 	//test_philosopher_forks_already_locked();
 	//test_philosopher_locks_forks_correct_order();
-	return (0);
 }

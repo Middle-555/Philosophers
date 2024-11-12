@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 16:50:09 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/11/12 14:04:43 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/11/12 15:26:29 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,3 +122,24 @@ void test_philosopher_forks_already_locked(void)
     pthread_mutex_destroy(&(forks[1].fork));
 }
 */
+
+void test_meal_limit(t_data *data)
+{
+    int i;
+
+    i = 0;
+    while (i < data->nbr_philo)
+    {
+        if (data->philos[i].meals != data->meal_limit)
+        {
+            printf("Erreur : Philosophe %d n'a pas atteint la limite de repas.\n",
+                   data->philos[i].philo_id);
+        }
+        else
+        {
+            printf("Succès : Philosophe %d a atteint la limite de repas.\n",
+                   data->philos[i].philo_id);
+        }
+        i++;
+    }
+}

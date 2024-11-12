@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 15:09:21 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/11/04 17:20:42 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/11/12 16:16:48 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,11 @@ int	init_philos(t_data *data)
 {
 	int			i;
 
+	data->philos = malloc(sizeof(t_philo) * data->nbr_philo);
 	if (!data->philos)
 	{
-		error_msg("Failed to allocate memory for philosophers.");
-		return (0);
+		fprintf(stderr, "Failed to allocate philos array\n");
+		return(0);
 	}
 	i = 0;
 	while (i < data->nbr_philo)
@@ -54,6 +55,7 @@ int	init_philos(t_data *data)
 		data->is_dead = 0;
 		i++;
 	}
+	printf("Philos array initialized successfully\n");
 	return (1);
 }
 
@@ -68,7 +70,6 @@ int	fill_input(t_data *data, char **argv)
 	else
 		data->meal_limit = -1;
 	data->forks = (t_fork *)safe_malloc(sizeof(t_fork) * data->nbr_philo);
-	data->philos = (t_philo *)safe_malloc(sizeof(t_philo) * data->nbr_philo);
 	return (1);
 }
 

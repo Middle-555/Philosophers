@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 15:59:10 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/11/04 17:59:04 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/11/12 16:28:09 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,18 @@ void	*monitor_routine(void *arg)
 	t_data	*data;
 
 	data = (t_data *)arg;
-	while (!data->is_dead)
+	if (!data)
+	{
+		error_msg("Invalid data");
+		return (NULL);
+	}
+	while (!data->is_dead && !data->end)
 	{
 		check_death(data);
+		check_meal_count(data); // Vérifie si tous les philosophes ont mangé suffisamment
 		usleep(100);
 	}
 	end_simulation(data);
+	cleanup(data);
 	return (NULL);
 }
