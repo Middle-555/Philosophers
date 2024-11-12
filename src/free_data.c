@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 16:01:57 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/11/04 18:04:35 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/11/12 13:59:09 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ void	end_simulation(t_data *data)
 	free(data->philos);
 }
 
-
-
 void	cleanup(t_data *data)
 {
 	int	i;
@@ -50,18 +48,12 @@ void	cleanup(t_data *data)
 	i = 0;
 	while (i < data->nbr_philo)
 	{
-		pthread_join(data->philos[i].thread_id, NULL);
+		pthread_mutex_destroy(&(data->forks[i].fork));
 		i++;
 	}
-	i = 0;
-	while (i < data->nbr_philo)
-	{
-		pthread_mutex_destroy(&data->forks[i].fork);
-		i++;
-	}
-	pthread_mutex_destroy(&data->mutex_print);
-	pthread_mutex_destroy(&data->mutex_eat);
-	pthread_mutex_destroy(&data->mutex_start);
-	free(data->philos);
+	pthread_mutex_destroy(&(data->mutex_print));
+	pthread_mutex_destroy(&(data->mutex_eat));
+	pthread_mutex_destroy(&(data->mutex_start));
 	free(data->forks);
+	free(data->philos);
 }

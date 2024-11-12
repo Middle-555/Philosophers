@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 15:42:13 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/11/04 18:12:11 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/11/12 14:05:10 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,83 +14,48 @@
 
 void	*philosopher_routine(void *arg)
 {
-    t_philo	*philo;
-    t_data	*data;
-
-    philo = (t_philo *)arg;
-    data = philo->data;
-
-    pthread_mutex_lock(&(data->mutex_start));
-    data->start = get_time();
-    pthread_mutex_unlock(&(data->mutex_start));
-
-    if (philo->philo_id % 2 == 0)
-        usleep(500);
-
-    while (1)
-    {
-        pthread_mutex_lock(&(data->mutex_eat));
-        if (data->is_dead || data->end)
-        {
-            printf("Philosophe %d quitte la boucle : is_dead=%d, end=%d\n",
-                   philo->philo_id, data->is_dead, data->end);
-            pthread_mutex_unlock(&(data->mutex_eat));
-            break;
-        }
-        pthread_mutex_unlock(&(data->mutex_eat));
-
-        // Philosophe mange
-        eat_philosopher(philo);
-       // printf("Philosophe %d a mis à jour time_since_meal à %lld ms\n",
-              // philo->philo_id, (long long)philo->time_since_meal);
-
-        // Philosophe dort
-        print_status(data, philo->philo_id, "is sleeping");
-        sleep_time(data->tts, data);
-
-        // Philosophe pense
-        print_status(data, philo->philo_id, "is thinking");
-    }
-    return (NULL);
-}
-
-
-void	eat_philosopher(t_philo *philo)
-{
+	t_philo	*philo;
 	t_data	*data;
 
+	philo = (t_philo *)arg;
 	data = philo->data;
 
-	// Prise des fourchettes dans un ordre défini pour éviter les deadlocks
-	if (philo->left_fork->fork_id < philo->right_fork->fork_id)
+	pthread_mutex_lock(&(data->mutex_start));
+	data->start = get_time();
+	pthread_mutex_unlock(&(data->mutex_start));
+
+	if (philo->philo_id % 2 == 0)
+		usleep(500);
+
+	while (1)
 	{
-		pthread_mutex_lock(&(data->forks[philo->right_fork - data->forks].fork));
-		print_status(data, philo->philo_id, "has taken a fork");
-		pthread_mutex_lock(&(data->forks[philo->left_fork - data->forks].fork));
+		if (should_exit(philo))
+			break;
+
+		perform_actions(philo);
 	}
-	else
-	{
-		pthread_mutex_lock(&(data->forks[philo->left_fork - data->forks].fork));
-		print_status(data, philo->philo_id, "has taken a fork");
-		pthread_mutex_lock(&(data->forks[philo->right_fork - data->forks].fork));
-	}
-	print_status(data, philo->philo_id, "has taken a fork");
-
-	// Philosophe mange maintenant qu'il a deux fourchettes
-	pthread_mutex_lock(&(data->mutex_eat));
-	print_status(data, philo->philo_id, "is eating");
-	philo->time_since_meal = get_time(); // Mise à jour du temps du dernier repas
-	(philo->meals)++;
-	pthread_mutex_unlock(&(data->mutex_eat));
-
-	// Philosophe mange pour une durée `tte`
-	sleep_time(data->tte, data);
-
-	// Libération des fourchettes dans l'ordre inverse
-	pthread_mutex_unlock(&(data->forks[philo->right_fork - data->forks].fork));
-	pthread_mutex_unlock(&(data->forks[philo->left_fork - data->forks].fork));
+	return (NULL);
 }
 
+int	should_exit(t_philo *philo)
+{
+	t_data	*data;
+	int		exit;
+
+	data = philo->data;
+	pthread_mutex_lock(&(data->mutex_eat));
+	exit = data->is_dead || data->end;
+	pthread_mutex_unlock(&(data->mutex_eat));
+	return (exit);
+}
+
+void	perform_actions(t_philo *philo)
+{
+	eat_philosopher(philo);
+	print_status(philo->data, philo->philo_id, "is sleeping");
+	sleep_time(philo->data->tts, philo->data);
+	print_status(philo->data, philo->philo_id, "is thinking");
+}
 void	sleep_time(long long time, t_data *data)
 {
 	long long	start_time;
