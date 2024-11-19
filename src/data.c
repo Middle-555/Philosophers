@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 15:09:21 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/11/12 16:16:48 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/11/19 17:40:49 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ int	init_philos(t_data *data)
 		data->philos[i].data = data;
 		data->philos[i].full = 0;
 		data->is_dead = 0;
+		data->start = get_time();
+		data->end = false;
 		i++;
 	}
 	printf("Philos array initialized successfully\n");
@@ -119,7 +121,8 @@ int	init_mutex(t_data *data)
 	}
 	if (pthread_mutex_init(&data->mutex_print, NULL) != 0
 		|| pthread_mutex_init(&data->mutex_eat, NULL) != 0
-		|| pthread_mutex_init(&data->mutex_start, NULL) != 0)
+		|| pthread_mutex_init(&data->mutex_start, NULL) != 0
+		|| pthread_mutex_init(&data->mutex_check, NULL) != 0)
 	{
 		error_msg("Failed to initialize mutex");
 		return (0);

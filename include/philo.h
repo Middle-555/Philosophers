@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:11:14 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/11/12 14:25:34 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/11/19 17:40:15 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef struct s_data
 {
 	t_fork				*forks;
 	t_philo				*philos;
-	int					check_eat;
+	//int					check_eat;
 	int					is_dead;
 	long				tts;
 	long				tte;
@@ -70,6 +70,7 @@ typedef struct s_data
 	long				meal_limit;
 	long				nbr_philo;
 	pthread_mutex_t		mutex_print;
+	pthread_mutex_t		mutex_check;
 	pthread_mutex_t		mutex_eat;
 	pthread_mutex_t		mutex_start;
 	long				start;
@@ -101,6 +102,8 @@ int			check_meal_count(t_data *data);
 // philo_death.c
 void		check_death(t_data *data);
 void		*monitor_routine(void *arg);
+void		set_is_dead(t_data *data, int value);
+int			get_is_dead(t_data *data);
 // philo_eat.c
 void		eat_philosopher(t_philo *philo);
 void		take_forks(t_philo *philo);

@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 15:42:13 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/11/12 16:02:54 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/11/19 17:46:45 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,7 @@ void	*philosopher_routine(void *arg)
 		usleep(500);
 
 	while (!should_exit(philo))
-	{
 		perform_actions(philo);
-	}
 	return (NULL);
 }
 
@@ -63,22 +61,26 @@ void	perform_actions(t_philo *philo)
 void	sleep_time(long long time, t_data *data)
 {
 	long long	start_time;
-
+	
 	start_time = get_time();
 	while ((get_time() - start_time) < time)
 	{
 		pthread_mutex_lock(&(data->mutex_eat));
+		pthread_mutex_lock(&(data->mutex_check));
 		if (data->is_dead || data->end)
 		{
+			pthread_mutex_unlock(&(data->mutex_check));
 			pthread_mutex_unlock(&(data->mutex_eat));
 			break;
 		}
+		pthread_mutex_unlock(&(data->mutex_check));
 		pthread_mutex_unlock(&(data->mutex_eat));
-		usleep(50); // Pause courte pour éviter de surcharger le CPU
+		//pthread_mutex_unlock(&(data->mutex_check));
+		usleep(100);
 	}
 }
 
-int wait_for_threads(t_data *data)
+int	wait_for_threads(t_data *data)
 {
     int i;
     int ret;
@@ -93,7 +95,7 @@ int wait_for_threads(t_data *data)
     {
         if (data->philos[i].thread_id)
         {
-            printf("Joining thread %d\n", i);
+           // printf("Joining thread %d\n", i);
             ret = pthread_join(data->philos[i].thread_id, NULL);
             if (ret != 0)
             {
@@ -101,7 +103,7 @@ int wait_for_threads(t_data *data)
                         i, strerror(ret));
                 return (-1);
             }
-            printf("Successfully joined thread %d\n", i);
+          //  printf("Successfully joined thread %d\n", i);
             // Mark the thread as joined by setting the thread ID to 0
             data->philos[i].thread_id = 0;
         }
@@ -120,7 +122,7 @@ int	check_meal_count(t_data *data)
 	pthread_mutex_lock(&(data->mutex_eat));
 	while (i < data->nbr_philo)
 	{
-		printf("Philosophe %d a mangé %ld fois\n", data->philos[i].philo_id, data->philos[i].meals);
+		//printf("Philosophe %d a mangé %ld fois\n", data->philos[i].philo_id, data->philos[i].meals);
 		if (data->philos[i].meals < data->meal_limit)
 		{
 			all_done = 0; // Un philosophe n'a pas encore atteint la limite
@@ -131,7 +133,7 @@ int	check_meal_count(t_data *data)
 	if (all_done)
 	{
 		data->end = 1; // Tous les philosophes ont mangé suffisamment
-		printf("Tous les philosophes ont atteint la limite de repas.\n");
+		//printf("Tous les philosophes ont atteint la limite de repas.\n");
 	}
 	pthread_mutex_unlock(&(data->mutex_eat));
 	return (all_done);

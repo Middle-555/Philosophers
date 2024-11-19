@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:00:24 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/11/04 17:52:30 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/11/19 17:23:57 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	print_status(t_data *data, int philo_id, char *msg)
 	long long	current_time;
 
 	pthread_mutex_lock(&data->mutex_print);
+	
 	current_time = get_time();
 	if (!data->is_dead)
 	{
@@ -58,4 +59,3 @@ void	print_status(t_data *data, int philo_id, char *msg)
 	}
 	pthread_mutex_unlock(&data->mutex_print);
 }
-
